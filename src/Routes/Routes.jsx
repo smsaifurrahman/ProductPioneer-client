@@ -5,6 +5,7 @@ import Register from "../Pages/Register/Register";
 import Private from "./Private";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../Pages/Home/Home";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
 
         }
       ]
+     
     },
+    {
+      path: '/dashboard',
+      element: <DashboardLayout></DashboardLayout>
+    }
   ]);
   
   export default router;
