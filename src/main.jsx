@@ -9,6 +9,8 @@ import "./index.css";
 import router from "./Routes/Routes.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 import {
    QueryClient,
    QueryClientProvider,
@@ -18,11 +20,13 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
+     <HelmetProvider>
+     <QueryClientProvider client={queryClient}>
       <AuthProvider>
          <RouterProvider router={router}></RouterProvider>
          <Toaster />
       </AuthProvider>
       </QueryClientProvider>
+     </HelmetProvider>
    </React.StrictMode>
 );

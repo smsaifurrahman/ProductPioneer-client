@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import MyProfile from "../Components/Dashboard/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         {
           path: 'manage-users',
           element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: 'profile',
+          element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
         }
       ]
     }

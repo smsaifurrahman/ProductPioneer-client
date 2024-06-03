@@ -18,13 +18,13 @@ import useRole from '../../../hooks/useRole';
 const Sidebar = () => {
   const { logOut } = useAuth()
   const [isActive, setActive] = useState(false);
-  const [role, isLoading] = useRole();
+  const {data, isLoading} = useRole();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
-  console.log('from sidebar', role);
+
   return (
     <>
       {/* Small Screen Navbar */}
@@ -77,9 +77,9 @@ const Sidebar = () => {
             {/* Conditional toggle button here.. */}
 
             {/*  Menu Items */}
-            {role === 'regular' &&  <RegularUserMenu></RegularUserMenu>}
-            {role === 'moderator' && <ModeratorMenu></ModeratorMenu>}
-            {role=== 'admin' &&   <AdminMenu></AdminMenu>}
+            {data?.role === 'regular' &&  <RegularUserMenu></RegularUserMenu>}
+            {data?.role === 'moderator' && <ModeratorMenu></ModeratorMenu>}
+            {data?.role=== 'admin' &&   <AdminMenu></AdminMenu>}
           </div>
         </div>
 

@@ -46,6 +46,13 @@ const ManageUsers = () => {
   // update user role
   const handleUpdateUserRole = async (newRole, userEmail, userName) =>{
     console.log(newRole, userEmail);
+    if(userEmail === user?.email) {
+      return  Swal.fire({
+       title: "Action not Allowed!",
+       text: "You are the admin. You are not allowed to update your role",
+       icon: "error"
+     });
+   }
     const updatedRole ={
       role: newRole
     }
@@ -84,7 +91,7 @@ const ManageUsers = () => {
     if(userEmail === user?.email) {
        return  Swal.fire({
         title: "Action not Allowed!",
-        text: "You are the  admin.",
+        text: "You are the admin. You are not allowed to delete yourself",
         icon: "error"
       });
     }
@@ -188,7 +195,7 @@ const ManageUsers = () => {
                       </td>
                       <td>
                         <button 
-                          onClick={() => handleUpdateUserRole('admin', user?.email)}
+                          onClick={() => handleUpdateUserRole('admin', user?.email, user?.name)}
                           className="btn btn-outline btn-secondary" 
                           disabled={user?.role === 'admin'}
                         >
