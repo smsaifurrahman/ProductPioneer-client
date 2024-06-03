@@ -6,6 +6,7 @@ import Private from "./Private";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -35,7 +36,13 @@ const router = createBrowserRouter([
     },
     {
       path: '/dashboard',
-      element: <DashboardLayout></DashboardLayout>
+      element: <DashboardLayout></DashboardLayout>,
+      children: [
+        {
+          path: 'manage-users',
+          element: <ManageUsers></ManageUsers>
+        }
+      ]
     }
   ]);
   
