@@ -21,7 +21,7 @@ import CheckoutForm from '../Form/CheckoutForm';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const 
-PaymentModal = ({ closeModal, isOpen, user }) => {
+PaymentModal = ({ closeModal, isOpen, user,subscriptionFee, refetch }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={closeModal}>
@@ -86,7 +86,7 @@ PaymentModal = ({ closeModal, isOpen, user }) => {
        
                 <Elements stripe={stripePromise} >
                      {/* checkout form */}
-                     <CheckoutForm closeModal={closeModal} user={user}></CheckoutForm>
+                     <CheckoutForm refetch={refetch} subscriptionFee={subscriptionFee} closeModal={closeModal} user={user}></CheckoutForm>
                 </Elements>
               </DialogPanel>
             </TransitionChild>

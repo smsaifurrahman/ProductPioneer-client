@@ -15,35 +15,35 @@ import {
 import "./CheckoutForm.css";
 import { ImSpinner9 } from "react-icons/im";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const CheckoutForm = ({ closeModal,user }) => {
+const CheckoutForm = ({ closeModal, user, subscriptionFee, refetch }) => {
    const [clientSecret, setClientSecret] = useState("");
    const stripe = useStripe();
    const elements = useElements();
    const axiosSecure = useAxiosSecure();
    const [cardError, setCardError] = useState();
    const [processing, setProcessing] = useState(false);
-   const subscriptionFee = 50;
+   const navigate = useNavigate();
 
-   useEffect(()=>{
-    // fetch client secret
-    
-    getClientSecret({price: subscriptionFee})
+   useEffect(() => {
+      // fetch client secret
 
-
-   },[])
+      getClientSecret({ price: subscriptionFee });
+   }, []);
    //get clientSecret
 
    const getClientSecret = async (price) => {
-     const {data} = await axiosSecure.post(`/create-payment-intent`,price)
-     console.log('client secret from server', data);
-     setClientSecret(data.clientSecret)
-   }
+      const { data } = await axiosSecure.post(`/create-payment-intent`, price);
+      console.log("client secret from server", data);
+      setClientSecret(data.clientSecret);
+   };
 
    const handleSubmit = async (event) => {
       // Block native form submission.
-      event.preventDefault(); 
-      setProcessing(true)
+      event.preventDefault();
+      setProcessing(true);
       if (!stripe || !elements) {
          // Stripe.js has not loaded yet. Make sure to disable
          // form submission until Stripe.js has loaded.
@@ -67,66 +67,87 @@ const CheckoutForm = ({ closeModal,user }) => {
 
       if (error) {
          console.log("[error]", error);
-         setCardError(error.message)
+         setCardError(error.message);
       } else {
          console.log("[PaymentMethod]", paymentMethod);
-         setCardError('')
+         setCardError("");
       }
 
       //confirm payment
       const { error: confirmError, paymentIntent } =
-      await stripe.confirmCardPayment(clientSecret, {
-         payment_method: {
-            card: card,
-            billing_details: {
-               email: user?.email,
-               name: user?.displayName,
+         await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+               card: card,
+               billing_details: {
+                  email: user?.email,
+                  name: user?.displayName,
+               },
             },
-         },
-      });
+         });
 
       if (confirmError) {
-        console.log(confirmError);
-        setCardError(confirmError.message);
-        setProcessing(false);
-        return;
-     }
+         console.log(confirmError);
+         setCardError(confirmError.message);
+         setProcessing(false);
+         return;
+      }
 
-     if(paymentIntent.status === 'succeeded') {
-        'adf'
-     }
+      if (paymentIntent.status === "succeeded") {
+         const membershipStatus = {
+            membership: "verified",
+         };
+         // change membership status verified
+         const { data } = await axiosSecure.patch(
+            `/users/update-membership/${user?.email}`,
+            membershipStatus
+         );
+         // update ui with refetch
+         refetch();
 
-     setProcessing(false)
+         //   navigate('/dashboard/profile')
+         closeModal();
+
+         Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Subscription is successful",
+            showConfirmButton: false,
+            timer: 1500,
+         });
+
+         console.log(data);
+      }
+
+      setProcessing(false);
    };
 
    return (
       <>
-      
-      <form onSubmit={handleSubmit}>
-         <CardElement
-            options={{
-               style: {
-                  base: {
-                     fontSize: "16px",
-                     color: "#424770",
-                     "::placeholder": {
-                        color: "#aab7c4",
+         <form onSubmit={handleSubmit}>
+            <CardElement
+               options={{
+                  style: {
+                     base: {
+                        fontSize: "16px",
+                        color: "#424770",
+                        "::placeholder": {
+                           color: "#aab7c4",
+                        },
+                     },
+                     invalid: {
+                        color: "#9e2146",
                      },
                   },
-                  invalid: {
-                     color: "#9e2146",
-                  },
-               },
-            }}
-         />
+               }}
+            />
 
-         <div className="flex mt-2 justify-around">
-            <button
-               disabled={!stripe || !clientSecret || processing }
-               type="submit"
-               className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-            >
-               {processing ? (
+            <div className="flex mt-2 justify-around">
+               <button
+                  disabled={!stripe || !clientSecret || processing}
+                  type="submit"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+               >
+                  {processing ? (
                      <ImSpinner9
                         size={24}
                         className="animate-spin  m-auto mr-2"
@@ -134,20 +155,19 @@ const CheckoutForm = ({ closeModal,user }) => {
                   ) : (
                      ` Pay $${subscriptionFee}`
                   )}
-               
-            </button>
-            <button
-               onClick={closeModal}
-               type="button"
-               className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-            >
-               Cancel
-            </button>
-         </div>
-      </form>
-      {
-        cardError && <p className="text-red-500 font-bold text-center"> {cardError} </p>
-      }
+               </button>
+               <button
+                  onClick={closeModal}
+                  type="button"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+               >
+                  Cancel
+               </button>
+            </div>
+         </form>
+         {cardError && (
+            <p className="text-red-500 font-bold text-center"> {cardError} </p>
+         )}
       </>
    );
 };
