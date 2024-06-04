@@ -8,6 +8,9 @@ import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import MyProfile from "../Components/Dashboard/MyProfile/MyProfile";
+import AddProduct from "../Form/AddProduct";
+import MyProducts from "../Components/Dashboard/RegularUserMenu/MyProducts";
+import UpdateProduct from "../Components/Dashboard/RegularUserMenu/UpdateProduct";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +49,19 @@ const router = createBrowserRouter([
         {
           path: 'profile',
           element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+        },
+        {
+          path: 'add-product',
+          element: <AddProduct></AddProduct>
+        },
+        {
+          path: 'my-products',
+          element: <MyProducts></MyProducts>
+
+        },
+        {
+          path: 'update-product/:id',
+          element: <UpdateProduct></UpdateProduct>
         }
       ]
     }

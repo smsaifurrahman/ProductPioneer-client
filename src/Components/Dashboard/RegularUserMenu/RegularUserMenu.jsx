@@ -18,12 +18,12 @@ const RegularUserMenu = () => {
          ></MenuItem>
          <MenuItem
             icon={IoMdAdd}
-            address={"/dashboard/manage-users"}
+            address={"/dashboard/add-product"}
             label={"Add Product"}
          ></MenuItem>
          <MenuItem
             icon={SiBookmyshow}
-            address={"/dashboard/coupons"}
+            address={"/dashboard/my-products"}
             label={"My Products"}
          ></MenuItem>
       </div>
