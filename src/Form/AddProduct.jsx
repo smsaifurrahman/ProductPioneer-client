@@ -7,6 +7,7 @@ import { imageUpload } from '../api/utils';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router-dom';
 
 const KeyCodes = {
   comma: 188,
@@ -19,7 +20,8 @@ const AddProduct = () => {
   const {user} = useAuth()  
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 //   const [imagePreview, setImagePreview] = useState();
 //   const [imageText, setImageText] = useState("Upload Image");
 
@@ -38,7 +40,7 @@ const AddProduct = () => {
     },
     onSuccess: () => {
        toast.success("Data Saved successfully");
-    //    navigate('/dashboard/my-listings')
+       navigate('/dashboard/my-products');
        setLoading(false);
     },
  });

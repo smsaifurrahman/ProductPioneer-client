@@ -32,6 +32,7 @@ const ManageUsers = () => {
     }
   })
 
+  // delete user
   const { mutateAsync: deleteUser } = useMutation({
     mutationFn: async (userEmail) => {
       const { data } = await axiosSecure.delete(`/users/${userEmail}`);

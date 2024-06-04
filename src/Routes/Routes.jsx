@@ -11,6 +11,8 @@ import MyProfile from "../Components/Dashboard/MyProfile/MyProfile";
 import AddProduct from "../Form/AddProduct";
 import MyProducts from "../Components/Dashboard/RegularUserMenu/MyProducts";
 import UpdateProduct from "../Components/Dashboard/RegularUserMenu/UpdateProduct";
+import ProductReviewPage from "../Pages/Dashboard/Moderator/ProductReviewPage";
+import ReportedProducts from "../Pages/Dashboard/Moderator/ReportedProducts";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
         {
           path: 'update-product/:id',
           element: <UpdateProduct></UpdateProduct>
+        },
+        {
+          path: 'product-review',
+          element: <ProductReviewPage></ProductReviewPage>
+        },
+        {
+          path: 'reported-products',
+          element: <ReportedProducts></ReportedProducts>
         }
       ]
     }
