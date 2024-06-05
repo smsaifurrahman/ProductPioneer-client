@@ -8,17 +8,17 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 
 const Featured = () => {
     const axiosPublic = useAxiosPublic()
-    const {data: products= [], isLoading, refetch} = useQuery({
+    const {data: featuredProducts= [], isLoading:featuredLoading, refetch} = useQuery({
     queryKey: ['products'],   
         queryFn: async () => {
-            const {data} = await axiosPublic.get('/products-featured');
+            const {data} = await axiosPublic('/featured');
             console.log(data);
             return data
 
         }
     })
     
-    if(isLoading) return <span className="loading loading-dots loading-lg"></span>
+    if(featuredLoading) return <span className="loading loading-dots loading-lg"></span>
    return (
      <div>
           <h2 className="text-3xl  font-bold text-center my-6">
@@ -27,7 +27,7 @@ const Featured = () => {
          </h2>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
          {
-            products.map(product => <ProductCard refetch={refetch} product={product} key={product._id}></ProductCard>)
+            featuredProducts.map(product => <ProductCard refetch={refetch} product={product} key={product._id}></ProductCard>)
          }
       </div>
      </div>

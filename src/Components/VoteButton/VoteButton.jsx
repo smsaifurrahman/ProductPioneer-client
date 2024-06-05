@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
 import { useState } from "react";
 
-const VoteButton = ({product, refetch}) => {
+const VoteButton = ({product, refetch, }) => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
