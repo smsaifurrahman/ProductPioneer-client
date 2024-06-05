@@ -106,7 +106,7 @@ const ProductReviewPage = () => {
                         <td>
                             
                            <button
-                           disabled={product.featured}
+                           disabled={product.featured || product.status=== 'Rejected'}
                               onClick={() => handleMakeFeatured(product._id)}
                               className="btn btn-outline btn-info"
                            >
