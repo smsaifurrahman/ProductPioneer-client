@@ -3,6 +3,9 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { format, formatDistanceToNow } from "date-fns";
 import VoteButton from "../VoteButton/VoteButton";
 
+import { Link } from "react-router-dom";
+
+
 const ProductCard = ({ product, refetch}) => {
 
 
@@ -16,7 +19,7 @@ const ProductCard = ({ product, refetch}) => {
          <div className=" ml-3 mt-3 w-full ">
          <h3>Posted on: {format(new Date(product.timestamp), 'PPpp')}</h3>
 
-            <h2 className="card-title text-2xl"> {product.productName} </h2>
+            <Link to={`/product-details/${product._id}`} className="card-title text-2xl"> {product.productName} </Link>
             <div className="flex flex-col items-end mr-3 ">
                 <VoteButton refetch={refetch}  product={product}></VoteButton>
             {/* <button className="btn">

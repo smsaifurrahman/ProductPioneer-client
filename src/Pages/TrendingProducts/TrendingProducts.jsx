@@ -9,7 +9,6 @@ const TrendingProducts = () => {
     queryKey: ['trendingProducts'],   
         queryFn: async () => {
             const {data} = await axiosPublic('/trending');
-            console.log(data);
             return data
 
         }

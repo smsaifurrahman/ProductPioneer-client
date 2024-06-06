@@ -17,6 +17,7 @@ const KeyCodes = {
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const UpdateProduct = () => {
+   // const axiosSecure = useAxiosSecure()
    const params = useParams() || {};
    const [loading, setLoading] = useState(false);
    const [tags, setTags] = useState([]);
