@@ -7,24 +7,31 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { Navigate, useNavigate } from "react-router-dom";
 import { data } from "autoprefixer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const VoteButton = ({product, refetch, }) => {
+const VoteButton = ({product, refetch }) => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const [hasVoted, setHasVoted] = useState(false);
     const sameUser = user?.email === product.productOwner.email;
 
-
+    useEffect(() => {
+      if (user && Array.isArray(product.votedBy) && product.votedBy.includes(user.email)) {
+          setHasVoted(true);
+      }
+  }, [user, product]);
     const { mutateAsync } = useMutation({
         mutationFn: async (id) => {
-          const { data } = await axiosSecure.patch(`/products/increase-vote/${id}`);
+          const email = user?.email
+          const { data } = await axiosSecure.patch(`/products/increase-vote/${id}`, {email});
+
           setHasVoted(true)
           return data;
         },
         onSuccess: (data) => {
           refetch();
+          // trendingRefetch();
           toast.success('You voted successfully')
        
         }

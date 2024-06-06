@@ -5,7 +5,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 
 const TrendingProducts = () => {
     const axiosPublic = useAxiosPublic()
-    const {data: trendingProducts= [], isLoading:trendingLoading, refetch:trendingRefetch} = useQuery({
+    const {data: trendingProducts= [], isLoading:trendingLoading, refetch} = useQuery({
     queryKey: ['trendingProducts'],   
         queryFn: async () => {
             const {data} = await axiosPublic('/trending');
@@ -24,7 +24,7 @@ const TrendingProducts = () => {
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
          {
            
-            trendingProducts.map(product => <ProductCard trendingRefetch={trendingRefetch} product={product} key={product._id}></ProductCard>)
+            trendingProducts.map(product => <ProductCard refetch={refetch} product={product} key={product._id}></ProductCard>)
          }
       </div>
      </div>

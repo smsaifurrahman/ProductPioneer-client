@@ -3,7 +3,7 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { format, formatDistanceToNow } from "date-fns";
 import VoteButton from "../VoteButton/VoteButton";
 
-const ProductCard = ({ product, refetch }) => {
+const ProductCard = ({ product, refetch}) => {
 
 
 
@@ -18,7 +18,7 @@ const ProductCard = ({ product, refetch }) => {
 
             <h2 className="card-title text-2xl"> {product.productName} </h2>
             <div className="flex flex-col items-end mr-3 ">
-                <VoteButton refetch={refetch} product={product}></VoteButton>
+                <VoteButton refetch={refetch}  product={product}></VoteButton>
             {/* <button className="btn">
                <BiSolidUpArrow className="text-2xl"></BiSolidUpArrow>{" "}
                {product.votes}{" "}
