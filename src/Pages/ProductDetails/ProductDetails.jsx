@@ -9,12 +9,13 @@ import useAuth from "../../hooks/useAuth";
 import ReviewForm from "../../Form/ReviewForm";
 import ReviewSlider from "../../Components/Slider/ReviewSlider";
 import { useState } from "react";
+import ReportButton from "../../Components/ReportButton/ReportButton";
 
 const ProductDetails = () => {
-    const {user} = useAuth();
+   const { user } = useAuth();
    const params = useParams();
    const axiosSecure = useAxiosSecure();
-   const [reviewRefetch, setReviewRefetch] = useState(() => {} );
+   const [reviewRefetch, setReviewRefetch] = useState(() => {});
 
    const {
       data: product,
@@ -29,7 +30,6 @@ const ProductDetails = () => {
       },
       enabled: !!params.id, // Ensure the query only runs if params.id is truthy
    });
-
 
    if (isLoading) {
       return <div>Loading...</div>;
@@ -81,13 +81,29 @@ const ProductDetails = () => {
          </div>
          {/* Review section */}
          <div className="">
-            
             <div>
-               <ReviewSlider setReviewRefetch={setReviewRefetch} productId ={product?._id}></ReviewSlider>
+               <ReviewSlider
+                  setReviewRefetch={setReviewRefetch}
+                  productId={product?._id}
+               ></ReviewSlider>
+            </div>
+            <div className="flex my-6 items-center justify-between">
+               <div className="flex font-bold items-center gap-3">
+                  <h2>Do you like it? then Vote:</h2>
+                  <VoteButton refetch={refetch} product={product}></VoteButton>
+               </div>
+               <div className="flex font-bold gap-3">
+                  <h3>Want to report this product?</h3>
+                  <ReportButton productId = {product?._id} ></ReportButton>
+               </div>
             </div>
             <div className="my-6">
-            <h3> Post Your comment </h3>
-               <ReviewForm reviewRefetch={reviewRefetch} product={product} user={user}></ReviewForm>
+               <h3 className="text-xl  my-4 font-bold:"> Post Your comment </h3>
+               <ReviewForm
+                  reviewRefetch={reviewRefetch}
+                  product={product}
+                  user={user}
+               ></ReviewForm>
             </div>
          </div>
       </div>

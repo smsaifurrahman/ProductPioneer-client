@@ -33,7 +33,15 @@ const ReviewSlider = ({ productId,setReviewRefetch }) => {
 
    return (
       <div className="">
-         <Swiper
+        <h2 className="text-2xl my-4 text-center font-bold  "> See what other people say about us </h2>
+         {
+            reviews.length < 1 ? <div className="h-72 text-center text-xl flex flex-col items-center justify-center">
+                 <h3> No one post review on the product yet, Bet= the first one review!  </h3> 
+            </div>
+            
+            :
+
+            <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             spaceBetween={50}
@@ -86,6 +94,8 @@ const ReviewSlider = ({ productId,setReviewRefetch }) => {
             ))}
             ...
          </Swiper>
+
+         }
       </div>
    );
 };

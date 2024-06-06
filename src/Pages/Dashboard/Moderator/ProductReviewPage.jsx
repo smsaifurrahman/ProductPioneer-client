@@ -3,6 +3,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ProductReviewPage = () => {
    const axiosSecure = useAxiosSecure();
@@ -99,9 +100,11 @@ const ProductReviewPage = () => {
                         <td> {product.productName} </td>
                         <td>
                            {" "}
+                           <Link to={`/product-details/${product._id}`}>
                            <button className="btn btn-outline btn-success">
                               View Details
                            </button>{" "}
+                           </Link>
                         </td>
                         <td>
                             
@@ -114,7 +117,7 @@ const ProductReviewPage = () => {
                            </button>{" "}
                         </td>
                         <td>
-                           {" "}
+                          
                            <button
                               disabled={product.status === "Accepted"}
                               onClick={() =>
