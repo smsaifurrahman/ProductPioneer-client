@@ -13,7 +13,8 @@ const AdminMenu = () => {
       <div>
          <MenuItem icon={FcStatistics} address={'/dashboard/statistics'} label={'Statistics'}></MenuItem>
          <MenuItem icon={FaUsersLine} address={'/dashboard/manage-users'} label={'Manage User'}></MenuItem>
-         <MenuItem icon={RiCoupon5Line} address={'/dashboard/coupons'} label={'Manage Coupons'}></MenuItem>
+         <MenuItem icon={RiCoupon5Line} address={'/dashboard/add-coupons'} label={'Add Coupon'}></MenuItem>
+         <MenuItem icon={RiCoupon5Line} address={'/dashboard/manage-coupons'} label={'Manage Coupons'}></MenuItem>
       </div>
    );
 };

@@ -16,6 +16,8 @@ import UpdateProduct from "../Components/Dashboard/RegularUserMenu/UpdateProduct
 import ProductReviewPage from "../Pages/Dashboard/Moderator/ProductReviewPage";
 import ReportedProducts from "../Pages/Dashboard/Moderator/ReportedProducts";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import AddCoupons from "../Pages/Dashboard/Admin/AddCoupons";
+import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
 
 const router = createBrowserRouter([
    {
@@ -84,6 +86,14 @@ const router = createBrowserRouter([
             path: "reported-products",
             element: <ReportedProducts></ReportedProducts>,
          },
+         {
+            path: 'add-coupons',
+            element: <AddCoupons></AddCoupons>
+         },
+         {
+            path: 'manage-coupons',
+            element: <ManageCoupons></ManageCoupons>
+         }
       ],
    },
 ]);

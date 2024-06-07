@@ -55,7 +55,7 @@ PaymentModal = ({ closeModal, isOpen, user,subscriptionFee, refetch }) => {
                 >
                   Review Information before subscribing
                 </DialogTitle>
-                <div className='mt-2'>
+                <div className='mt-6 text-xl'>
                   <p className='text-sm text-gray-500'>
                     Name: {user.displayName}
                   </p>
@@ -63,6 +63,11 @@ PaymentModal = ({ closeModal, isOpen, user,subscriptionFee, refetch }) => {
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
                   Email: {user.email}
+                  </p>
+                </div>
+                <div className='mt-2'>
+                  <p className='text-sm text-gray-500'>
+                  Pay Total: ${subscriptionFee}
                   </p>
                 </div>
                 <div className='mt-2'>

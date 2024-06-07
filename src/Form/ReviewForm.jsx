@@ -5,7 +5,7 @@ import React from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const ReviewForm = ({ product, user,reviewRefetch }) => {
+const ReviewForm = ({ product, user, reviewRefetch }) => {
    const axiosSecure = useAxiosSecure();
 
    const { mutateAsync } = useMutation({
@@ -15,8 +15,8 @@ const ReviewForm = ({ product, user,reviewRefetch }) => {
       },
       onSuccess: () => {
          toast.success("Your review is Posted");
-         reviewRefetch()
-        
+         reviewRefetch();
+
          //    navigate('/dashboard/my-products');
          //    setLoading(false);
       },
@@ -31,20 +31,20 @@ const ReviewForm = ({ product, user,reviewRefetch }) => {
       const userImage = form.image.value;
       const description = form.description.value;
       const rating = form.rating.value;
-      const productId = product?._id;  
+      const productId = product?._id;
       const reviewData = {
-        productId,
-        userName,
-        userImage,
-        rating,
-        description
-      }
+         productId,
+         userName,
+         userImage,
+         rating,
+         description,
+      };
 
       console.log(reviewData);
 
       try {
          await mutateAsync(reviewData);
-         form.reset()
+         form.reset();
       } catch (err) {
          console.log(err);
          toast.error(err.message);
@@ -54,7 +54,7 @@ const ReviewForm = ({ product, user,reviewRefetch }) => {
 
    return (
       <form
-           onSubmit={handleSubmit}
+         onSubmit={handleSubmit}
          className="grid gap-4 sm:grid-cols-1 md:grid-cols-2"
       >
          <div className="md:col-span-2">
@@ -83,8 +83,13 @@ const ReviewForm = ({ product, user,reviewRefetch }) => {
                Your Rating:
             </label>
             <input
-              className="w-full px-3 py-2 border rounded"
-            type="number" name="rating" min="1" max="5" required />
+               className="w-full px-3 py-2 border rounded"
+               type="number"
+               name="rating"
+               min="1"
+               max="5"
+               required
+            />
          </div>
          <div className="md:col-span-2">
             <label className="block font-bold text-gray-700">

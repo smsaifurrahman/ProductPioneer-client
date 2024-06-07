@@ -36,7 +36,7 @@ const ReviewSlider = ({ productId,setReviewRefetch }) => {
         <h2 className="text-2xl my-4 text-center font-bold  "> See what other people say about us </h2>
          {
             reviews.length < 1 ? <div className="h-72 text-center text-xl flex flex-col items-center justify-center">
-                 <h3> No one post review on the product yet, Bet= the first one review!  </h3> 
+                 <h3> No one post review on the product yet, Be the first one to review!  </h3> 
             </div>
             
             :

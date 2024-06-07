@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const KeyCodes = {
   comma: 188,
@@ -36,9 +37,22 @@ const AddProduct = () => {
   const { mutateAsync } = useMutation({
     mutationFn: async (roomData) => {
        const { data } = await axiosSecure.post(`/products`, roomData);
+       console.log(data);
        return data;
     },
-    onSuccess: () => {
+    
+    onSuccess: (data) => {
+      if(data.message === 'unverified') {
+        navigate('/dashboard/profile')
+        return Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Please subscribe to Add more products",
+          showConfirmButton: false,
+          timer: 3000
+        });
+       
+      }
        toast.success("Data Saved successfully");
        navigate('/dashboard/my-products');
        setLoading(false);
@@ -77,7 +91,7 @@ const AddProduct = () => {
             tags,
         }
 
-        console.log(productData);
+       
         await mutateAsync(productData);
     } catch(err) {
         console.log(err);
@@ -162,7 +176,7 @@ const AddProduct = () => {
         <div className="md:col-span-2">
           <label className="block text-gray-700">Tags:</label>
           <ReactTags
-            tags={tags}
+            tags={tags}    
             handleDelete={handleDelete}
             handleAddition={handleAddition}
             delimiters={delimiters}
@@ -190,6 +204,7 @@ const AddProduct = () => {
         <div className="md:col-span-2">
           <label className="block text-gray-700">External Links:</label>
           <input
+          required
             type="text"
             name="externalLinks"
             className="w-full px-3 py-2 border rounded"
