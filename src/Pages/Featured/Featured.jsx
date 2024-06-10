@@ -7,12 +7,12 @@ import axios from "axios";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 
 const Featured = () => {
-    const axiosPublic = useAxiosPublic()
-    const {data: featuredProducts= [], isLoading:featuredLoading, refetch} = useQuery({
-    queryKey: ['products'],   
+    const axiosPublic = useAxiosPublic()  
+  const {data: featuredProducts= [], isLoading:featuredLoading, refetch} = useQuery({
+    queryKey: ['featuredProducts'],   
         queryFn: async () => {
             const {data} = await axiosPublic('/featured');
-            console.log(data);
+            // setFeaturedRefetch(()=> refetch())
             return data
 
         }

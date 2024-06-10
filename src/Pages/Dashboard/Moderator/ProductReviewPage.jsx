@@ -34,7 +34,7 @@ const ProductReviewPage = () => {
          toast.success("Products Status Changed Successfully");
       },
    });
-   // 
+   
 
    // Make a product featured
    const { mutateAsync: makeFeatured } = useMutation({
@@ -109,7 +109,7 @@ const ProductReviewPage = () => {
                         <td>
                             
                            <button
-                           disabled={product.featured || product.status=== 'Rejected'}
+                           disabled={product.featured}
                               onClick={() => handleMakeFeatured(product._id)}
                               className="btn btn-outline btn-info"
                            >

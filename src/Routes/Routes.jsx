@@ -18,6 +18,9 @@ import ReportedProducts from "../Pages/Dashboard/Moderator/ReportedProducts";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import AddCoupons from "../Pages/Dashboard/Admin/AddCoupons";
 import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
+import Products from "../Pages/Products";
+import AdminRoute from "./AdminRoute";
+import ModeratorRoute from "./ModeratorRoute";
 
 const router = createBrowserRouter([
    {
@@ -46,17 +49,21 @@ const router = createBrowserRouter([
          },
          {
             path: '/product-details/:id',
-            element: <ProductDetails></ProductDetails>
+            element: <PrivateRoute> <ProductDetails></ProductDetails></PrivateRoute>
          },
+         {
+            path: '/products',
+            element: <Products></Products>
+         }
       ],
    },
    {
       path: "/dashboard",
-      element: <DashboardLayout></DashboardLayout>,
+      element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
       children: [
          {
             path: "manage-users",
-            element: <ManageUsers></ManageUsers>,
+            element: <PrivateRoute><AdminRoute><ManageUsers></ManageUsers></AdminRoute></PrivateRoute>,
          },
          {
             path: "profile",
@@ -68,31 +75,31 @@ const router = createBrowserRouter([
          },
          {
             path: "add-product",
-            element: <AddProduct></AddProduct>,
+            element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
          },
          {
             path: "my-products",
-            element: <MyProducts></MyProducts>,
+            element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>,
          },
          {
             path: "update-product/:id",
-            element: <UpdateProduct></UpdateProduct>,
+            element: <PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
          },
          {
             path: "product-review",
-            element: <ProductReviewPage></ProductReviewPage>,
+            element: <PrivateRoute><ModeratorRoute><ProductReviewPage></ProductReviewPage></ModeratorRoute></PrivateRoute>,
          },
          {
             path: "reported-products",
-            element: <ReportedProducts></ReportedProducts>,
+            element: <PrivateRoute><ModeratorRoute><ReportedProducts></ReportedProducts></ModeratorRoute></PrivateRoute>,
          },
          {
             path: 'add-coupons',
-            element: <AddCoupons></AddCoupons>
+            element: <PrivateRoute><AdminRoute><AddCoupons></AddCoupons></AdminRoute></PrivateRoute>
          },
          {
             path: 'manage-coupons',
-            element: <ManageCoupons></ManageCoupons>
+            element: <PrivateRoute> <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute></PrivateRoute>
          }
       ],
    },

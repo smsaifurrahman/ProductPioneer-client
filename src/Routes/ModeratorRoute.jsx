@@ -1,0 +1,15 @@
+import { Navigate } from "react-router-dom";
+import useRole from "../hooks/useRole";
+
+
+const ModeratorRoute = ({children}) => {
+    const {data, isLoading} = useRole();
+    
+    if(isLoading)  return <span className="loading loading-dots loading-lg"></span>
+    if(data?.role === 'moderator') return children
+
+
+    return <Navigate to={'/dashboard'}></Navigate>
+};
+
+export default ModeratorRoute;

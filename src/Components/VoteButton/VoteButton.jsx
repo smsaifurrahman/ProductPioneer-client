@@ -1,6 +1,6 @@
 /** @format */
 
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation } from "@tanstack/react-query";
 import { BiSolidUpArrow } from "react-icons/bi";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
@@ -31,8 +31,9 @@ const VoteButton = ({product, refetch }) => {
         },
         onSuccess: (data) => {
           refetch();
-          // trendingRefetch();
-          toast.success('You voted successfully')
+          toast.success('You voted successfully');
+          // QueryClient.invalidateQueries('featuredProducts');
+          // QueryClient.invalidateQueries('trendingProducts');
        
         }
       });
