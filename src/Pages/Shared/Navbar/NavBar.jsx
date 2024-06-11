@@ -1,6 +1,6 @@
 /** @format */
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 
@@ -9,7 +9,43 @@ const NavBar = () => {
 
    const navLinks = (
       <>
-         <li>
+      <li>
+      <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+               isActive
+                  ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
+                  : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
+            }
+         >
+            Home
+         </NavLink>
+      </li>
+      <li>
+      <NavLink
+            to={"/products"}
+            className={({ isActive }) =>
+               isActive
+                  ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
+                  : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
+            }
+         >
+            Products
+         </NavLink>
+      </li>
+      {/* <li>
+      <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+               isActive
+                  ? " font-bold text-xl text-gray-500 p-2 text-rounded-xl "
+                  : "font-bold p-2 text-xl text-sky-500 rounded-xl "
+            }
+         >
+            Home
+         </NavLink>
+      </li> */}
+         {/* <li>
             {" "}
             <Link to={"/"}>Home</Link>{" "}
          </li>
@@ -22,7 +58,7 @@ const NavBar = () => {
                {" "}
                <Link to={"/private"}>Private</Link>{" "}
             </li>
-         )}
+         )} */}
       </>
    );
 
@@ -67,7 +103,7 @@ const NavBar = () => {
                   {navLinks}
                </ul>
             </div>
-            <a className="btn btn-ghost text-xl">ProductPioneer</a>
+            <a className="btn btn-ghost text-3xl">ProductPioneer</a>
          </div>
          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navLinks}</ul>
@@ -91,7 +127,7 @@ const NavBar = () => {
                   </div>
                   <ul
                      tabIndex={0}
-                     className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-48"
+                     className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-48"
                   >
                      <li className="ml-3 text-xl font-bold">
                         {user?.displayName}
