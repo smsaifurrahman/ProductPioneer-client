@@ -84,8 +84,8 @@ const ManageCoupons = () => {
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}
-               <thead>
-                  <tr className="font-bold text-xl">
+               <thead  className="font-bold text-xl text-black">
+                  <tr >
                      <th>#</th>
                      <th>Coupon Code</th>
                      <th className=""> Description </th>

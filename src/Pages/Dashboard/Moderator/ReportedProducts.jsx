@@ -78,9 +78,9 @@ const ReportedProducts = () => {
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}
-               <thead>
+               <thead  className="font-bold text-xl text-black">
                   <tr>
-                     <th></th>
+                     <th>#</th>
                      <th>Product Name</th>
                      <th>Reported Counts</th>
                      <th>View Details</th>

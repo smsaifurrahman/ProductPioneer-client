@@ -80,7 +80,7 @@ const MyProducts = () => {
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}
-               <thead>
+               <thead  className="font-bold text-xl text-black">
                   <tr>
                      <th>#</th>
                      <th>Product Name</th>

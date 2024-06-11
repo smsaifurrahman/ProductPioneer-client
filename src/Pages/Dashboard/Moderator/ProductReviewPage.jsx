@@ -82,8 +82,8 @@ const ProductReviewPage = () => {
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}
-               <thead>
-                  <tr>
+               <thead className="font-bold text-xl text-black">
+                  <tr >
                      <th>#</th>
                      <th>Product Name</th>
                      <th> View Details </th>

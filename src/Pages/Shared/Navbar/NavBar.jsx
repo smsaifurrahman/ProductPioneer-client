@@ -5,23 +5,36 @@ import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const NavBar = () => {
-   const {logOut , user} = useAuth();
-   
-   const navLinks = <>
-    <li> <Link to={'/'}>Home</Link> </li>
-    <li> <Link to={'/products'}>Products</Link> </li>
-   { user &&  <li> <Link to={'/private'}>Private</Link> </li> }
-   </>
+   const { logOut, user } = useAuth();
+
+   const navLinks = (
+      <>
+         <li>
+            {" "}
+            <Link to={"/"}>Home</Link>{" "}
+         </li>
+         <li>
+            {" "}
+            <Link to={"/products"}>Products</Link>{" "}
+         </li>
+         {user && (
+            <li>
+               {" "}
+               <Link to={"/private"}>Private</Link>{" "}
+            </li>
+         )}
+      </>
+   );
 
    //handle Logout
    const handleLogOut = async () => {
-     try{
-       await logOut();
-       toast.success('You are logged out')
-     } catch(err) {
-      toast.error(err.message)
-     }
-   }
+      try {
+         await logOut();
+         toast.success("You are logged out");
+      } catch (err) {
+         toast.error(err.message);
+      }
+   };
 
    return (
       <div className="navbar bg-base-100">
@@ -51,56 +64,68 @@ const NavBar = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-42"
                >
-                 {navLinks}
+                  {navLinks}
                </ul>
             </div>
             <a className="btn btn-ghost text-xl">ProductPioneer</a>
          </div>
          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-             {navLinks}
-            </ul>
+            <ul className="menu menu-horizontal px-1">{navLinks}</ul>
          </div>
          <div className="navbar-end">
-        
-            {
-               user ? 
+            {user ? (
                <div className="dropdown dropdown-end">
-               <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-               >
-                  <div className="w-10 rounded-full">
-                     <img title={user?.displayName}
-                       referrerPolicy='no-referrer'
-                        alt="Tailwind CSS Navbar component"
-                        src={user?.photoURL}
-                     />
+                  <div
+                     tabIndex={0}
+                     role="button"
+                     className="btn btn-ghost btn-circle avatar"
+                  >
+                     <div className="w-10 rounded-full">
+                        <img
+                           title={user?.displayName}
+                           referrerPolicy="no-referrer"
+                           alt="Tailwind CSS Navbar component"
+                           src={user?.photoURL}
+                        />
+                     </div>
                   </div>
-               </div>
-               <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-               >
-                  <li>
-                     <Link to={'/dashboard'} className="justify-between">
-                        Dashboard
-                        <span className="badge">New</span>
-                     </Link>
-                  </li>
-                  
-                  <li onClick={handleLogOut}>
-                     <a>Logout</a>
-                  </li>
-               </ul>
-            </div>
-               :
+                  <ul
+                     tabIndex={0}
+                     className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-48"
+                  >
+                     <li className="ml-3 text-xl font-bold">
+                        {user?.displayName}
+                     </li>
+                     <li>
+                        <Link
+                           to={"/dashboard"}
+                           className=" text-xl font-sans justify-between"
+                        >
+                           Dashboard
+                        </Link>
+                     </li>
 
-              <> <Link to={'/login'}> <button className="btn mr-2" >Login</button> </Link>
-              <Link to={'/register'}> <button className="btn" >Register</button> </Link></>
-            }
-           
+                     <li
+                      
+                        onClick={handleLogOut}
+                     >
+                      <Link to={'/'}  className=" text-xl font-sans justify-between">Logout</Link>
+                     </li>
+                  </ul>
+               </div>
+            ) : (
+               <>
+                  {" "}
+                  <Link to={"/login"}>
+                     {" "}
+                     <button className="btn mr-2">Login</button>{" "}
+                  </Link>
+                  <Link to={"/register"}>
+                     {" "}
+                     <button className="btn">Register</button>{" "}
+                  </Link>
+               </>
+            )}
          </div>
       </div>
    );

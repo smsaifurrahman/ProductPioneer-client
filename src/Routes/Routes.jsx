@@ -21,11 +21,13 @@ import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
 import Products from "../Pages/Products";
 import AdminRoute from "./AdminRoute";
 import ModeratorRoute from "./ModeratorRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
    {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
          {
             path: "/",
