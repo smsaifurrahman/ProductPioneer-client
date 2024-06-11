@@ -1,13 +1,15 @@
 import React from 'react';
 import Coupon from '../../../Form/Coupon';
+import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
+import { Helmet } from 'react-helmet';
 
 const AddCoupons = () => {
     return (
         <div>
-             <h2 className="text-3xl  font-bold text-center my-6">
-            {" "}
-             Add Coupons here
-         </h2>
+              <Helmet>
+          <title> ProductPioneer | Add Coupons </title>
+        </Helmet>
+            <SectionTitle heading={'Add Coupons here'}></SectionTitle>
             <Coupon></Coupon>
         </div>
     );

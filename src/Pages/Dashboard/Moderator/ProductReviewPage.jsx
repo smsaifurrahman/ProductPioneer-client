@@ -4,6 +4,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const ProductReviewPage = () => {
    const axiosSecure = useAxiosSecure();
@@ -75,10 +77,11 @@ const ProductReviewPage = () => {
 
    return (
       <div>
-         Review page {products.length}
-         <h2 className="text-3xl  font-bold text-center my-6">
-            Product Review Lists
-         </h2>
+           <Helmet>
+          <title> ProductPioneer | Product Review  </title>
+        </Helmet>
+      <SectionTitle heading={'Product review Details'}></SectionTitle>
+        
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}

@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import ProductCard from "../Components/ProductCard/ProductCard";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
+import SectionTitle from "../Components/SectionTitle/SectionTitle";
 
 const Products = () => {
    const axiosPublic = useAxiosPublic();
@@ -61,8 +63,10 @@ const Products = () => {
       return <span className="loading loading-dots loading-lg"></span>;
    return (
       <div>
-         {products.length}
-         <h2 className="text-3xl  font-bold text-center my-6">All Products</h2>
+          <Helmet>
+          <title> All Products </title>
+        </Helmet>
+         <SectionTitle heading={'All Products'}></SectionTitle>
 
          <div className="flex items-center justify-center my-8">
             <div className="w-96 flex flex-col items-center justify-center">

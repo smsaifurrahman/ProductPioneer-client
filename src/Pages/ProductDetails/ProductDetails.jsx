@@ -10,6 +10,7 @@ import ReviewForm from "../../Form/ReviewForm";
 import ReviewSlider from "../../Components/Slider/ReviewSlider";
 import { useState } from "react";
 import ReportButton from "../../Components/ReportButton/ReportButton";
+import { Helmet } from "react-helmet";
 
 const ProductDetails = () => {
    const { user } = useAuth();
@@ -41,6 +42,9 @@ const ProductDetails = () => {
 
    return (
       <div className="mt-10 grid  grid-cols-1 md:grid-cols-2 gap-4">
+          <Helmet>
+          <title> ProductPioneer | Product Details  </title>
+        </Helmet>
          <div className="">
             <figure className="w-full h-72">
                <img

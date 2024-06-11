@@ -7,6 +7,7 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/module
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import CouponCard from "./CouponCard";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const Coupons = () => {
    const axiosPublic = useAxiosPublic();
@@ -20,7 +21,9 @@ const Coupons = () => {
    });
    return (
       <div>
+        <SectionTitle heading={'Grab the discount'}> </SectionTitle>
          <Swiper
+         className="mb-4"
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             spaceBetween={50}

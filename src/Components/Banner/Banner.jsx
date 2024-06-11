@@ -22,7 +22,7 @@ const Banner = () => {
             scrollbar={{ draggable: true }}
             autoplay={{ delay: 5000 }}
             style={{ height: "100%" }} // Ensure Swiper takes up 100% height of its container
-            className="rounded-2xl"
+            className="rounded-2xl my-4"
          >
             <SwiperSlide className="rounded-2xl">
                <div className="relative text-center rounded-2xl ">

@@ -4,6 +4,7 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const TrendingProducts = () => {
    const axiosPublic = useAxiosPublic();
@@ -22,10 +23,7 @@ const TrendingProducts = () => {
       return <span className="loading loading-dots loading-lg"></span>;
    return (
       <div>
-         <h2 className="text-3xl  font-bold text-center my-6">
-            {" "}
-            Trending Products
-         </h2>
+        <SectionTitle heading={'Trending Products'}></SectionTitle>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {trendingProducts.map((product) => (
                <ProductCard
@@ -36,7 +34,7 @@ const TrendingProducts = () => {
             ))}
          </div>
          <div className="flex items-center justify-center">
-            <Link to={'/products'} className="btn  my-6 font-bold btn-outline"> Show All Products </Link>
+            <Link to={'/products'} className="btn border-orange-500 my-6 font-bold btn-outline"> Show All Products </Link>
          </div>
       </div>
    );

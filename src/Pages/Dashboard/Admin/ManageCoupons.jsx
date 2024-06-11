@@ -8,6 +8,8 @@ import UpdateCouponModal from "../../../Modal/UpdateCouponModal";
 import UpdateCoupon from "../../../Modal/UpdateCoupon";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const ManageCoupons = () => {
    const axiosSecure = useAxiosSecure();
@@ -76,11 +78,10 @@ const ManageCoupons = () => {
 
    return (
       <div>
-         <h2 className="text-3xl  font-bold text-center my-6">
-            {" "}
-            All Coupons here
-         </h2>
-
+           <Helmet>
+          <title> ProductPioneer | Manage Coupons  </title>
+        </Helmet>
+         <SectionTitle heading={'Coupon Lists'}></SectionTitle>
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}

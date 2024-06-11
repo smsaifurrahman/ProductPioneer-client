@@ -11,6 +11,8 @@ import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SectionTitle from "../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const KeyCodes = {
    comma: 188,
@@ -105,10 +107,10 @@ const AddProduct = () => {
 
    return (
       <div>
-         <h2 className="text-3xl text-center font-bold my-6">
-            {" "}
-            Add a new Product Here{" "}
-         </h2>
+           <Helmet>
+          <title> ProductPioneer | Add Product  </title>
+        </Helmet>
+         <SectionTitle heading={'Add New Product Here'} ></SectionTitle>
          <div
             className=" md:w-3/4 mx-auto p-4 bg-white border rounded 
     shadow-md"

@@ -1,64 +1,40 @@
 /** @format */
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const NavBar = () => {
    const { logOut, user } = useAuth();
+ 
 
    const navLinks = (
       <>
-      <li>
-      <NavLink
-            to={"/"}
-            className={({ isActive }) =>
-               isActive
-                  ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
-                  : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
-            }
-         >
-            Home
-         </NavLink>
-      </li>
-      <li>
-      <NavLink
-            to={"/products"}
-            className={({ isActive }) =>
-               isActive
-                  ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
-                  : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
-            }
-         >
-            Products
-         </NavLink>
-      </li>
-      {/* <li>
-      <NavLink
-            to={"/"}
-            className={({ isActive }) =>
-               isActive
-                  ? " font-bold text-xl text-gray-500 p-2 text-rounded-xl "
-                  : "font-bold p-2 text-xl text-sky-500 rounded-xl "
-            }
-         >
-            Home
-         </NavLink>
-      </li> */}
-         {/* <li>
-            {" "}
-            <Link to={"/"}>Home</Link>{" "}
+         <li>
+            <NavLink
+               to={"/"}
+               className={({ isActive }) =>
+                  isActive
+                     ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
+                     : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
+               }
+            >
+               Home
+            </NavLink>
          </li>
          <li>
-            {" "}
-            <Link to={"/products"}>Products</Link>{" "}
+            <NavLink
+               to={"/products"}
+               className={({ isActive }) =>
+                  isActive
+                     ? " font-bold text-2xl text-gray-600 p-2 text-rounded-xl "
+                     : "font-bold p-2 text-2xl text-orange-500 rounded-xl "
+               }
+            >
+               Products
+            </NavLink>
          </li>
-         {user && (
-            <li>
-               {" "}
-               <Link to={"/private"}>Private</Link>{" "}
-            </li>
-         )} */}
+        
       </>
    );
 
@@ -67,6 +43,7 @@ const NavBar = () => {
       try {
          await logOut();
          toast.success("You are logged out");
+         
       } catch (err) {
          toast.error(err.message);
       }
@@ -103,7 +80,13 @@ const NavBar = () => {
                   {navLinks}
                </ul>
             </div>
-            <a className="btn btn-ghost text-3xl">ProductPioneer</a>
+            <Link
+               to={"/"}
+               className="  font-bold  text-gray-500  cursor-pointer text-3xl"
+            >
+               Product
+               <span className="text-orange-500 text-3xl ">Pioneer</span>
+            </Link>
          </div>
          <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navLinks}</ul>
@@ -141,11 +124,13 @@ const NavBar = () => {
                         </Link>
                      </li>
 
-                     <li
-                      
-                        onClick={handleLogOut}
-                     >
-                      <Link to={'/'}  className=" text-xl font-sans justify-between">Logout</Link>
+                     <li onClick={handleLogOut}>
+                        <Link
+                          
+                           className=" text-xl font-sans justify-between"
+                        >
+                           Logout
+                        </Link>
                      </li>
                   </ul>
                </div>

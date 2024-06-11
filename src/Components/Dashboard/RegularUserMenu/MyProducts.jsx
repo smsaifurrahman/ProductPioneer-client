@@ -10,6 +10,7 @@ import { useState } from "react";
 import UpdateProduct from "./UpdateProduct";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const MyProducts = () => {
    const axiosSecure = useAxiosSecure();
@@ -73,10 +74,7 @@ const MyProducts = () => {
    return (
       <div>
        
-         <h2 className="text-3xl  font-bold text-center my-6">
-            {" "}
-            Your product Lists
-         </h2>
+         <SectionTitle heading={'Your Product Lists'}></SectionTitle>
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}

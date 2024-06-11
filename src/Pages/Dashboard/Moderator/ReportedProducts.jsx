@@ -7,6 +7,8 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import { Helmet } from "react-helmet";
 
 const ReportedProducts = () => {
    const axiosSecure = useAxiosSecure();
@@ -71,10 +73,10 @@ const ReportedProducts = () => {
 
    return (
       <div>
-         reported products {reportedProducts.length}
-         <h2 className="text-3xl  font-bold text-center my-6">
-            Reported Products Lists
-         </h2>
+           <Helmet>
+          <title> ProductPioneer | Reported Products </title>
+        </Helmet>
+         <SectionTitle heading={'Reported Product Lists'}></SectionTitle>
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}

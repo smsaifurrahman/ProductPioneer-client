@@ -19,7 +19,7 @@ const ProductCard = ({ product, refetch }) => {
          <div className=" ml-3 mt-3 w-full ">
          <h3>Posted on: {format(new Date(product.timestamp), 'PPpp')}</h3>
 
-            <Link to={`/product-details/${product._id}`} className="card-title text-2xl"> {product.productName} </Link>
+            <Link to={`/product-details/${product._id}`} className="card-title text-2xl text-orange-600 underline"> {product.productName} </Link>
             <div className="flex flex-col items-end mr-3 ">
                 <VoteButton  refetch={refetch}  product={product}></VoteButton>
             {/* <button className="btn">

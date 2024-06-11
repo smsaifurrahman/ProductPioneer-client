@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
 
 const ManageUsers = () => {
@@ -128,8 +129,9 @@ const ManageUsers = () => {
     <>
       <div className='container mx-auto px-4 sm:px-8'>
         <Helmet>
-          <title>Manage Users  </title>
+          <title> ProductPioneer | Manage Users  </title>
         </Helmet>
+     
         <div className='py-8'>
           <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>

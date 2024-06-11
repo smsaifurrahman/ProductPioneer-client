@@ -5,6 +5,7 @@ import React from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import axios from "axios";
 import ProductCard from "../../Components/ProductCard/ProductCard";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const Featured = () => {
     const axiosPublic = useAxiosPublic()  
@@ -21,10 +22,8 @@ const Featured = () => {
     if(featuredLoading) return <span className="loading loading-dots loading-lg"></span>
    return (
      <div>
-          <h2 className="text-3xl  font-bold text-center my-6">
-            {" "}
-            Latest Featured
-         </h2>
+          
+         <SectionTitle heading={'Latest Featured'} > </SectionTitle>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
          {
             featuredProducts.map(product => <ProductCard refetch={refetch} product={product} key={product._id}></ProductCard>)
