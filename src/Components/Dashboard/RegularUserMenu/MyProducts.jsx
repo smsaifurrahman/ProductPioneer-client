@@ -28,57 +28,51 @@ const MyProducts = () => {
       },
    });
 
-    // delete products
-    const { mutateAsync } = useMutation({
+   // delete products
+   const { mutateAsync } = useMutation({
       mutationFn: async (userEmail) => {
-        const { data } = await axiosSecure.delete(`/products/${userEmail}`);
-        return data;
+         const { data } = await axiosSecure.delete(`/products/${userEmail}`);
+         return data;
       },
       onSuccess: (data) => {
-        refetch();
-     
+         refetch();
+      },
+   });
+
+   // Delete a product
+   const handleProductDelete = async (id) => {
+      try {
+         Swal.fire({
+            title: "Are you sure?",
+            text: `You want to delete this product?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+         }).then(async (result) => {
+            if (result.isConfirmed) {
+               mutateAsync(id);
+               Swal.fire({
+                  title: "Deleted!",
+                  text: "The product has been deleted.",
+                  icon: "success",
+               });
+            }
+         });
+      } catch (err) {
+         console.log(err);
+         toast.error(err.message);
       }
-    });
-
-
-    // Delete a product
-  const handleProductDelete = async (id) => {
-
-
-    try {
-      Swal.fire({
-        title: "Are you sure?",
-        text: `You want to delete this product?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes"
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-         mutateAsync(id);
-          Swal.fire({
-            title: "Deleted!",
-            text: "The product has been deleted.",
-            icon: "success"
-          });
-        }
-      });
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    }
-  };
-
+   };
 
    return (
       <div>
-       
-         <SectionTitle heading={'Your Product Lists'}></SectionTitle>
+         <SectionTitle heading={"Your Product Lists"}></SectionTitle>
          <div className="overflow-x-auto">
             <table className="table">
                {/* head */}
-               <thead  className="font-bold text-xl text-black">
+               <thead className="font-bold text-xl text-black">
                   <tr>
                      <th>#</th>
                      <th>Product Name</th>
@@ -91,7 +85,7 @@ const MyProducts = () => {
                </thead>
                <tbody>
                   {/* row 1 */}
-                  {products.map((product,index) => (
+                  {products.map((product, index) => (
                      <tr key={product._id}>
                         <th> {index + 1} </th>
                         <td> {product.productName} </td>
@@ -106,14 +100,32 @@ const MyProducts = () => {
                            </div>
                         </td>
                         <td className="text-center"> {product.votes} </td>
-                        <td> {product.status} </td>
+                        <td
+                           className={`${
+                              product.status === "Accepted"
+                                 ? "text-green-500 font-bold"
+                                 : product.status === "Rejected"
+                                 ? "text-red-500 font-bold"
+                                 : product.status === "Pending"
+                                 ? "text-black-500 font-bold"
+                                 : ""
+                           }`}
+                        >
+                           {product.status}
+                        </td>
                         <td className=" ">
-                           <Link to={`/dashboard/update-product/${product?._id}`} className="btn  bg-blue-500  text-white rounded hover:bg-blue-700">
+                           <Link
+                              to={`/dashboard/update-product/${product?._id}`}
+                              className="btn  bg-blue-500  text-white rounded hover:bg-blue-700"
+                           >
                               Update
                            </Link>
                         </td>
                         <td>
-                           <MdDelete onClick={()=> handleProductDelete(product?._id)} className="text-4xl text-red-500 cursor-pointer"></MdDelete>
+                           <MdDelete
+                              onClick={() => handleProductDelete(product?._id)}
+                              className="text-4xl text-red-500 cursor-pointer"
+                           ></MdDelete>
                         </td>
                      </tr>
                   ))}

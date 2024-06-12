@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
-   const { createUser, updateUserProfile } = useAuth();
+   const { createUser, updateUserProfile, logOut } = useAuth();
    const axiosPublic = useAxiosPublic();
    const navigate = useNavigate();
    const location = useLocation();
@@ -42,8 +42,7 @@ const Register = () => {
          }
 
          navigate(from, { replace: true });
-
-         
+        
          toast.success("Registration is Successful");
       } catch (err) {
          // console.log(err);
@@ -53,7 +52,7 @@ const Register = () => {
 
    return (
       <section className="bg-white dark:bg-gray-900">
-         <h1 className="text-3xl text-center font-bold">Please Register here</h1>
+         <h1 className="text-2xl mb-6 text-center font-bold">Please Register here</h1>
 
          <div className="container flex items-center justify-center px-6 mx-auto">
             <form onSubmit={handleRegister} className="w-full border-2 p-4 rounded-2xl max-w-md">

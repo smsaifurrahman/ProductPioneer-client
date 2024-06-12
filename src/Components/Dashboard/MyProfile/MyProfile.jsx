@@ -63,7 +63,7 @@ const MyProfile = () => {
             <div className="flex justify-between">
                <div
                   className={` pl-4 ${
-                     data.membership === "verified" && "md:ml-72 ml-4"
+                     data.membership === "verified" && "md:ml-60 ml-4"
                   } mb-6`}
                >
                   {/* <p className="p-2 uppercase px-4 text-xs text-white bg-pink-500 rounded-full">
@@ -107,7 +107,7 @@ const MyProfile = () => {
                                     name="couponCode"
                                  />
                                  <input
-                                    className="btn  px-3 py-2 "
+                                    className="btn bg-green-500 text-white px-3 py-2 "
                                     type="submit"
                                     value={"Apply"}
                                  />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CouponCard = ({coupon}) => {
     return (
-        <div className=" mx-auto bg-white shadow-lg bg-orange-50 rounded-2xl overflow-hidden">
+        <div className=" mx-auto  shadow-lg bg-orange-50 rounded-2xl overflow-hidden">
         <div className="p-8 flex flex-col md:flex-row items-center justify-between">
           <div className="">
             <div className="flex justify-between items-center">

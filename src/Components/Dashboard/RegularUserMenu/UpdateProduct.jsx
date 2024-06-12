@@ -1,7 +1,7 @@
 /** @format */
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useEffect, useState } from "react";
@@ -21,6 +21,7 @@ const UpdateProduct = () => {
    const params = useParams() || {};
    const [loading, setLoading] = useState(false);
    const [tags, setTags] = useState([]);
+   const navigate = useNavigate();
 
    const { data: productData = {}, refetch, isLoading } = useQuery({
       queryKey: ["productData", params.id],
@@ -52,6 +53,7 @@ const UpdateProduct = () => {
       onSuccess: () => {
          toast.success("Product updated successfully");
          refetch();
+         navigate('/dashboard/my-products')
          setLoading(false);
       },
    });

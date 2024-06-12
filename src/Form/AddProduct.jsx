@@ -110,7 +110,7 @@ const AddProduct = () => {
            <Helmet>
           <title> ProductPioneer | Add Product  </title>
         </Helmet>
-         <SectionTitle heading={'Add New Product Here'} ></SectionTitle>
+         <SectionTitle heading={'Add New Product'} ></SectionTitle>
          <div
             className=" md:w-3/4 mx-auto p-4 bg-white border rounded 
     shadow-md"
