@@ -1,8 +1,15 @@
-# React + Vite
+Website Name : ProductPioneer
+Live link: https://productpioneer-9bbb5.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+OverView: 
+Product pionner It is a platform where users can discover and share their tech products. Tech
+Products means Web Apps, AI tools, Softwares, Games, Mobile Apps etc. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Users can submit new products,
+2. users upvote existing products & post reviews for products.
+3. The platform includes user authentication, roles for normal users, moderators, and admins,
+as well as a product moderation system.
+4. Moderator can review the product before allowing it to publish on Product lists
+5. Additionally, a payment system is integrated,
+allowing users to unlock premium features or obtain extra facilities through paid
+subscriptions.
