@@ -53,23 +53,12 @@ const Register = () => {
 
    return (
       <section className="bg-white dark:bg-gray-900">
-         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-            <form onSubmit={handleRegister} className="w-full max-w-md">
-               <div className="flex justify-center mx-auto">
-                  <img
-                     className="w-auto h-7 sm:h-8"
-                     src="https://merakiui.com/images/logo.svg"
-                     alt=""
-                  />
-               </div>
+         <h1 className="text-3xl text-center font-bold">Please Register here</h1>
 
-               <div className="flex items-center justify-center mt-6">
-                  <a
-                     href="#"
-                     className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white"
-                  >
-                     Register here
-                  </a>
+         <div className="container flex items-center justify-center px-6 mx-auto">
+            <form onSubmit={handleRegister} className="w-full border-2 p-4 rounded-2xl max-w-md">
+               <div className="flex justify-center mx-auto">
+                  
                </div>
 
                <div className="relative flex items-center mt-8">

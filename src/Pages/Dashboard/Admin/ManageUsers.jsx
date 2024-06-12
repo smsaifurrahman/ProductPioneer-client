@@ -192,14 +192,14 @@ const ManageUsers = () => {
                       <td> {user?.email} </td>
                       <td className="uppercase" > {user?.role} </td>
                       <td className=""> <button onClick={()=> handleUpdateUserRole('moderator',user?.email, user?.name)} 
-                      className="btn btn-outline btn-primary"
+                      className="btn bg-orange-600 text-white"
                       disabled= {user?.role === 'moderator'}
                       >Make Moderator</button>  
                       </td>
                       <td>
                         <button 
                           onClick={() => handleUpdateUserRole('admin', user?.email, user?.name)}
-                          className="btn btn-outline btn-secondary" 
+                          className="btn bg-blue-500 text-white" 
                           disabled={user?.role === 'admin'}
                         >
                           Make Admin

@@ -105,10 +105,10 @@ const MyProducts = () => {
                               </div>
                            </div>
                         </td>
-                        <td> {product.votes} </td>
+                        <td className="text-center"> {product.votes} </td>
                         <td> {product.status} </td>
                         <td className=" ">
-                           <Link to={`/dashboard/update-product/${product?._id}`} className="btn btn-outline btn-success">
+                           <Link to={`/dashboard/update-product/${product?._id}`} className="btn  bg-blue-500  text-white rounded hover:bg-blue-700">
                               Update
                            </Link>
                         </td>

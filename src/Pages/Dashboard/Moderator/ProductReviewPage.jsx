@@ -104,7 +104,7 @@ const ProductReviewPage = () => {
                         <td>
                            {" "}
                            <Link to={`/product-details/${product._id}`}>
-                           <button className="btn btn-outline btn-success">
+                           <button className="btn bg-gray-500 text-white">
                               View Details
                            </button>{" "}
                            </Link>
@@ -114,7 +114,7 @@ const ProductReviewPage = () => {
                            <button
                            disabled={product.featured}
                               onClick={() => handleMakeFeatured(product._id)}
-                              className="btn btn-outline btn-info"
+                              className="btn bg-sky-500 text-white"
                            >
                               Make Featured
                            </button>{" "}
@@ -129,7 +129,7 @@ const ProductReviewPage = () => {
                                     "Accepted"
                                  )
                               }
-                              className="btn btn-outline btn-info"
+                              className="btn btn-success text-white"
                            >
                               Accept
                            </button>{" "}
@@ -143,7 +143,7 @@ const ProductReviewPage = () => {
                                     "Rejected"
                                  )
                               }
-                              className="btn btn-outline btn-error"
+                              className="btn  text-white btn-error"
                            >
                               Reject
                            </button>{" "}

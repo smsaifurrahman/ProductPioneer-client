@@ -221,9 +221,9 @@ const AddProduct = () => {
                <div className="md:col-span-2">
                   <button
                      type="submit"
-                     className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+                     className="w-full px-4 py-2 font-bold bg-blue-500 text-white rounded hover:bg-blue-700"
                   >
-                     Submit
+                     Add Product
                   </button>
                </div>
             </form>

@@ -1,7 +1,7 @@
 /** @format */
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { axiosSecure } from "../../../hooks/useAxiosSecure";
 import { WithContext as ReactTags } from "react-tag-input";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { imageUpload } from "../../../api/utils";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const KeyCodes = {
    comma: 188,
    enter: 13,
@@ -17,20 +18,23 @@ const KeyCodes = {
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const UpdateProduct = () => {
-   // const axiosSecure = useAxiosSecure()
    const params = useParams() || {};
    const [loading, setLoading] = useState(false);
    const [tags, setTags] = useState([]);
-   const { data: productData = {},  refetch } = useQuery({
+
+   const { data: productData = {}, refetch, isLoading } = useQuery({
       queryKey: ["productData", params.id],
       queryFn: async () => {
          const { data } = await axiosSecure(`/product/${params?.id}`);
-         setTags(productData.tags)
          return data;
       },
    });
 
-
+   useEffect(() => {
+      if (productData?.tags) {
+         setTags(productData.tags);
+      }
+   }, [productData]);
 
    const handleDelete = (i) => {
       setTags(tags.filter((tag, index) => index !== i));
@@ -40,19 +44,18 @@ const UpdateProduct = () => {
       setTags([...tags, tag]);
    };
 
-   const { mutateAsync ,isLoading } = useMutation({
-      mutationFn: async (productData) => {
-         const { data } = await axiosSecure.patch(`/products/${params.id}`, productData);
+   const { mutateAsync, isLoading: isMutating } = useMutation({
+      mutationFn: async (updatedProductData) => {
+         const { data } = await axiosSecure.patch(`/products/${params.id}`, updatedProductData);
          return data;
       },
       onSuccess: () => {
          toast.success("Product updated successfully");
-         refetch()
-         //    navigate('/dashboard/my-listings')
+         refetch();
          setLoading(false);
       },
    });
-   //handle form
+
    const handleSubmit = async (e) => {
       e.preventDefault();
       setLoading(true);
@@ -64,15 +67,11 @@ const UpdateProduct = () => {
       let product_image = productData?.product_image;
 
       try {
-       
          if (productImage) {
             product_image = await imageUpload(productImage);
          }
-        
 
-         
-         console.log(product_image);
-         const productData = {
+         const updatedProductData = {
             productName,
             product_image,
             productDescription,
@@ -80,8 +79,7 @@ const UpdateProduct = () => {
             tags,
          };
 
-         console.log(productData);
-         await mutateAsync(productData);
+         await mutateAsync(updatedProductData);
       } catch (err) {
          console.log(err);
          toast.error(err.message);
@@ -89,20 +87,15 @@ const UpdateProduct = () => {
       }
    };
 
-   if(loading) return <span className="loading loading-dots loading-lg"></span>
+   if (loading || isLoading || isMutating) {
+      return <span className="loading loading-dots loading-lg"></span>;
+   }
+
    return (
       <div>
-         <h2 className="text-3xl text-center my-6 font-bold">
-            Update this Products
-         </h2>
-         <div
-            className=" md:w-3/4 mx-auto p-4 bg-white border rounded 
-    shadow-md"
-         >
-            <form
-               onSubmit={handleSubmit}
-               className="grid gap-4 sm:grid-cols-1 md:grid-cols-2"
-            >
+         <h2 className="text-3xl text-center my-6 font-bold">Update this Product</h2>
+         <div className="md:w-3/4 mx-auto p-4 bg-white border rounded shadow-md">
+            <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                <div className="md:col-span-2">
                   <label className="block text-gray-700">Product Name:</label>
                   <input
@@ -117,10 +110,8 @@ const UpdateProduct = () => {
                   <label className="block text-gray-700">Product Image:</label>
                   <input
                      type="file"
-                     //  defaultValue={productData.product_image}
                      name="productImage"
                      className="w-full px-3 py-2 border rounded"
-                     
                   />
                </div>
                <div className="md:col-span-2">
@@ -137,7 +128,6 @@ const UpdateProduct = () => {
                   <label className="block text-gray-700">Tags:</label>
                   <ReactTags
                      tags={tags}
-                    //  defaultValue={productData.tags}
                      handleDelete={handleDelete}
                      handleAddition={handleAddition}
                      delimiters={delimiters}
@@ -148,8 +138,7 @@ const UpdateProduct = () => {
                         tagInputField: "w-full px-3 py-2 border rounded",
                         selected: "react-tags__selected",
                         tag: "react-tags__tag inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded mr-2",
-                        remove:
-                           "react-tags__remove ml-2 cursor-pointer text-red-500",
+                        remove: "react-tags__remove ml-2 cursor-pointer text-red-500",
                      }}
                      renderTag={({ tag, key, className, onRemove }) => (
                         <span key={key} className={className}>

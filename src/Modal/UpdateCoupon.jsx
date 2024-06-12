@@ -148,7 +148,7 @@ const UpdateCoupon = ({ closeModal, refetch, isOpen, coupon, user }) => {
                            </div>
 
                            <div className="md:col-span-2 flex justify-between items-center btn-secondary">
-                              <button  type="submit" className="btn ">
+                              <button  type="submit" className="btn bg-blue-500 text-white ">
                                  Update
                               </button>
                               <button

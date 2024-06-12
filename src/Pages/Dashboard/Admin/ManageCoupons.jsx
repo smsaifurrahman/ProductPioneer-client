@@ -115,7 +115,7 @@ const ManageCoupons = () => {
                                  setIsOpen(true);
                               }}
                               htmlFor="my_modal_6"
-                              className="btn"
+                              className="btn bg-blue-500 text-white"
                            >
                               Update
                            </button>

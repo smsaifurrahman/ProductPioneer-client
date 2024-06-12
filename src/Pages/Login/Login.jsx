@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const Login = () => {
    const { googleSignIn,signIn } = useAuth();
@@ -63,7 +64,10 @@ const Login = () => {
    };
 
    return (
-      <div className="w-full max-w-md p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+     <div>
+       <h1 className="text-center my-3 font-bold text-xl">Please login here</h1>
+       <div className="w-full max-w-md p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
+      
          <div className="flex justify-center mx-auto">
             <img
                className="w-auto h-7 sm:h-8"
@@ -158,6 +162,7 @@ const Login = () => {
             </Link>
          </p>
       </div>
+     </div>
    );
 };
 

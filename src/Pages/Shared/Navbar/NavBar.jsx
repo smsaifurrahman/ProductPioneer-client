@@ -139,11 +139,11 @@ const NavBar = () => {
                   {" "}
                   <Link to={"/login"}>
                      {" "}
-                     <button className="btn mr-2">Login</button>{" "}
+                     <button className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold mr-2">Login</button>{" "}
                   </Link>
                   <Link to={"/register"}>
                      {" "}
-                     <button className="btn">Register</button>{" "}
+                     <button className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold">Register</button>{" "}
                   </Link>
                </>
             )}

@@ -22,6 +22,7 @@ import Products from "../Pages/Products";
 import AdminRoute from "./AdminRoute";
 import ModeratorRoute from "./ModeratorRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Statistics from "../Pages/Dashboard/Admin/Statistics";
 
 const router = createBrowserRouter([
    {
@@ -102,6 +103,11 @@ const router = createBrowserRouter([
          {
             path: 'manage-coupons',
             element: <PrivateRoute> <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute></PrivateRoute>
+         }
+         ,
+         {
+            path: 'statistics',
+            element: <PrivateRoute> <AdminRoute><Statistics></Statistics></AdminRoute></PrivateRoute>
          }
       ],
    },
