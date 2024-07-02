@@ -17,16 +17,19 @@ subscriptions.
 
 
 
+
 **To install ProductPionner, follow these steps:**
 
 1. Clone the repository: git colne https://github.com/smsaifurrahman/ProductPioneer-client.git
 2. Navigate to the project directory: **`cd project-title`**
 3. Install dependencies: **`npm install`**
-4. Start the project: **`npm start`**
+4. Start the project: **`npm run dev`**
 5. Open your browser and navigate to http://localhost:5000.
-6. To configure the project, create a .env file in the root directory and add the following variables:
-     DATABASE_URL=your_database_url
+6. To configure the project, create a .env file in the root
+   directory and add the following variables:
      API_KEY=your_api_key
+     VITE_STRIPE_PUBLISHABLE_KEY = your_key
+     VITE_IMAGE_HOSTING_KEY= Your_key
 
 
 
