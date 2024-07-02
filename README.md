@@ -1,7 +1,7 @@
 Website Name : ProductPioneer
 Live link: https://productpioneer-9bbb5.web.app
-
-OverView: 
+**
+OverView: **
 Product pionner It is a platform where users can discover and share their tech products. Tech
 Products means Web Apps, AI tools, Softwares, Games, Mobile Apps etc. 
 
@@ -14,6 +14,8 @@ as well as a product moderation system.
 allowing users to unlock premium features or obtain extra facilities through paid
 subscriptions.
 
+**Technologies used: **
+MongoDB, Express.js, React with Vite, and Node.js, stripe, firebase
 
 
 
