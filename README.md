@@ -29,8 +29,8 @@ MongoDB, Express.js, React with Vite, and Node.js, stripe, firebase
 5. Open your browser and navigate to http://localhost:5000.
 6. To configure the project, create a .env file in the root
    directory and add the following variables:
-     API_KEY=your_api_key
-     VITE_STRIPE_PUBLISHABLE_KEY = your_key
+     API_KEY=your_api_key,
+     VITE_STRIPE_PUBLISHABLE_KEY = your_key,
      VITE_IMAGE_HOSTING_KEY= Your_key
 
 
