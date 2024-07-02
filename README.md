@@ -13,3 +13,14 @@ as well as a product moderation system.
 5. Additionally, a payment system is integrated,
 allowing users to unlock premium features or obtain extra facilities through paid
 subscriptions.
+
+
+
+
+**To install ProductPionner, follow these steps:**
+
+1. Clone the repository: **`git clone https://github.com/username/project-title.git`**
+2. Navigate to the project directory: **`cd project-title`**
+3. Install dependencies: **`npm install`**
+4. Build the project: **`npm run build`**
+5. Start the project: **`npm start`**
